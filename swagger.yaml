@@ -1,0 +1,107 @@
+swagger: "2.0"
+info:
+    description: "Generating PDF documents"
+    title: "content-doc-generator"
+    version: "1.0.0"
+host: "content-doc-generator.endpoints.auto-de-not-production.cloud.goog"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+schemes:
+- "https"
+paths:
+    /service/content-doc-generator/info:
+        get:
+            description: "PHP info"
+            operationId: get_info
+            responses:
+                200:
+                    description: ""
+    /service/content-doc-generator/documents/get:
+        get:
+            description: "Get Zip file with all documents"
+            operationId: get_deal_document
+            produces:
+            - application/zip
+            parameters:
+            - name: carId
+              in: query
+              description: ID of the selling car
+              type: string
+              required: true
+            - name: userId
+              in: query
+              type: string
+              required: true
+              description: ID of the seller user
+            - name: offerId
+              in: query
+              type: string
+              required: true
+              description: offer ID
+            - name: requestUserId
+              in: query
+              type: string
+              required: true
+              description: ID of the buyer user
+            - name: type
+              in: query
+              type: string
+              enum: ["offer", "dealer_seller", "european_standard_information", "data_protection", "information_transfer_schufa"]
+              required: false
+              description: Type of the document
+            - name: monthlyInstallment
+              in: query
+              type: string
+              required: false
+              description: financingInfo.monthlyInstallment
+            - name: paybackPeriod
+              in: query
+              type: string
+              required: false
+              description: financingInfo.paybackPeriod
+            - name: onetimeSpecialPayment
+              in: query
+              type: string
+              required: false
+              description: financingInfo.onetimeSpecialPayment
+            - name: netLoanAmount
+              in: query
+              type: string
+              required: false
+              description: financingInfo.netLoanAmount
+            - name: paymentProtectionInsurance
+              in: query
+              type: string
+              required: false
+              description: financingInfo.paymentProtectionInsurance
+            - name: finalInstallment
+              in: query
+              type: string
+              required: false
+              description: financingInfo.finalInstallment
+            - name: grossLoanAmount
+              in: query
+              type: string
+              required: false
+              description: financingInfo.grossLoanAmount
+            - name: grossLoanAmountWithoutFinalInstallment
+              in: query
+              type: string
+              required: false
+              description: financingInfo.grossLoanAmountWithoutFinalInstallment
+            - name: nominalInterestRate
+              in: query
+              type: string
+              required: false
+              description: financingInfo.nominalInterestRate
+            - name: annualPercentageRate
+              in: query
+              type: string
+              required: false
+              description: financingInfo.annualPercentageRate
+            responses:
+                200:
+                    description: "Documents downloaded"
+

@@ -1,0 +1,16 @@
+{
+  "name": "content-doc-generator",
+  "version": "0.1.0",
+  "lockfileVersion": 1,
+  "requires": true,
+  "dependencies": {
+    "@bytebrand/i18n-dictionaries": {
+      "version": "0.5.67",
+      "resolved": "https://registry.npmjs.org/@bytebrand/i18n-dictionaries/-/i18n-dictionaries-0.5.67.tgz",
+      "integrity": "sha512-7DcVCosaGMTzNOC9GFwb+DPlszH6StwQdOZbXTSSGnlLjhsfIirfYIQvgQ9yzn1Owf8DHXe5zjFXY1Y43o19ww==",
+      "requires": {
+        "reflect-metadata": "^0.1.12"
+      }
+    }
+  }
+}

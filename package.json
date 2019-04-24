@@ -1,0 +1,31 @@
+{
+  "name": "tt",
+  "version": "1.0.0",
+  "description": "Install docker - https://docs.docker.com/install/   Install docker-compose - https://docs.docker.com/compose/install/   Create `.env` based on `.env.dist`",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/core": "^7.4.3",
+    "browserify": "^16.2.3",
+    "core-js": "^3.0.1",
+    "reading-time": "^1.2.0",
+    "watchify": "^3.11.1",
+    "wkhtmltopdf": "^0.3.4"
+  },
+  "scripts": {
+    "build": "babel public/assets/js -d public/build --present es2016",
+    "watch": "babel public/assets/js -d public/build --present es2016 -w"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "eslint": "^5.16.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
