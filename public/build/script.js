@@ -1,4 +1,4 @@
-import { promices, promice_chain } from './promices.js';
+import { promices, promice_chain, promice_end } from './promices.js';
 
 var pr = promices();
 
@@ -13,4 +13,6 @@ pr.then(data => {
     console.log(`Error: ${err}`);
 });
 
-promice_chain();
+//promice_chain();
+
+promice_end();
