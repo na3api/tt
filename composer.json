@@ -10,7 +10,9 @@
     "json-api-php/json-api": "^2.0",
     "vlucas/phpdotenv": "^3.3",
     "ext-json": "*",
-    "ext-xml": "*",
-    "ext-zip": "^1.13"
+    "ext-xml": "*"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^4.2"
   }
 }
