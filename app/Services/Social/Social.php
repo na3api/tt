@@ -6,10 +6,11 @@
  * Time: 15:43
  */
 
-namespace App\Services;
+namespace App\Services\Social;
 
+use App\Services\Social\SocialInterface;
 
-abstract class Social
+abstract class Social implements SocialInterface
 {
     public $appId = null;
     public $secretKey = null;

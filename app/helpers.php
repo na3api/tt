@@ -89,7 +89,7 @@ function array_except(&$array, $keys)
     $keys = (array) $keys;
 
     if (count($keys) === 0) {
-        return;
+        return [];
     }
 
     foreach ($keys as $key) {
@@ -226,4 +226,8 @@ function clearString($string){
     ];
 
     return preg_replace($conversions, array_keys($conversions), $string);
+}
+
+function shutDownFunction(){
+
 }

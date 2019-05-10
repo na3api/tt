@@ -4,10 +4,10 @@ namespace App\Controller;
 use App\Application;
 use App\Exceptions\AppException;
 use App\Request;
-use App\Services\Document;
-use App\Services\ReplacementData;
-use App\Services\DataService;
-use App\Services\SocialBuilder;
+use App\Services\Bicycle\BicycleBuilder;
+use App\Services\Bicycle\Model;
+use App\Services\Bicycle\Touring;
+use App\Services\Social\SocialBuilder;
 use App\View;
 use App\Services\Mpdf;
 use Mpdf\Config\ConfigVariables;
@@ -29,13 +29,37 @@ class Documents extends Controller
      */
     public function terms(Request $request)
     {
-        $builder = new SocialBuilder();
+        $twitter = (new SocialBuilder())
+            ->setType('twitter')
+            ->setId( 'WAstat6a0NZ8IjhCMckzIBBuz')
+            ->setSecret('0qnneaD57tRGXEiUqbrGdi5Qjsm63a20i9ZkTkffgXF3KJUlVK')
+            ->get();
 
-        $connect = $builder->setType('twitter')
-            ->setId( '213232')
-            ->setSecret('99123213213222')
-            ->connect();
+        $twitter->connect();
 
-        dump($connect);
+        $tweets = $twitter->getTweets([
+            'call' => 'statuses/user_timeline',
+            'screen_name' => 'BrentToderian'
+        ]);
+//        dump($twitter->get('tweets/search', []));
+        dump($tweets);
+
+
+        $bicycle = (new BicycleBuilder())
+            ->setType('touring')
+            ->setModel(new Model('GT', 'Avalanche'))
+            ->setPrice(18100)
+            ->setSize('M')
+            ->setColor('green')
+            ->setState('new')
+            ->create();
+
+        //$bicycle->ride();
+
+        //$bicycle->handlebar = "aluminium";
+
+        unset($bicycle->model_brand);
+
+        dump($bicycle);
     }
 }

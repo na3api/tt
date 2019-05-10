@@ -6,7 +6,7 @@
  * Time: 15:43
  */
 
-namespace App\Services;
+namespace App\Services\Social;
 
 
 class Facebook extends Social
@@ -14,5 +14,10 @@ class Facebook extends Social
     public function __construct(SocialBuilder $builder)
     {
         parent::__construct($builder);
+    }
+
+    public function connect(): void
+    {
+        // TODO: Implement connect() method.
     }
 }

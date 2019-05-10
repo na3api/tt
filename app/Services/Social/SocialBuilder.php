@@ -6,7 +6,7 @@
  * Time: 16:43
  */
 
-namespace App\Services;
+namespace App\Services\Social;
 
 
 class SocialBuilder
@@ -33,7 +33,7 @@ class SocialBuilder
         return $this;
     }
 
-    public function connect() : Social{
+    public function get() : Social{
         if($this->type == 'facebook'){
             return new Facebook($this);
         }elseif ($this->type == 'twitter'){
