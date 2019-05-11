@@ -33,11 +33,11 @@ class SocialBuilder
         return $this;
     }
 
-    public function get() : Social{
+    public function connect() {
         if($this->type == 'facebook'){
-            return new Facebook($this);
+            return (new Facebook($this))->connect();
         }elseif ($this->type == 'twitter'){
-            return new Twitter($this);
+            return (new Twitter($this))->connect();
         }
     }
 }

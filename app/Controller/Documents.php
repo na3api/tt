@@ -7,6 +7,7 @@ use App\Request;
 use App\Services\Bicycle\BicycleBuilder;
 use App\Services\Bicycle\Model;
 use App\Services\Bicycle\Touring;
+use App\Services\Database\Mongo;
 use App\Services\Social\SocialBuilder;
 use App\View;
 use App\Services\Mpdf;
@@ -21,7 +22,21 @@ use App\Services\TransService as Trans;
 
 class Documents extends Controller
 {
+    /**
+     * @param $query
+     * @param $headers
+     * @throws \Exception
+     */
+    public function get(Request $request)
+    {
+        $test = Mongo::connect('tot')->find('posts');
 
+        dd($test);
+    }
+
+    public function setTweets(Request $request){
+
+    }
     /**
      * @param $query
      * @param $headers
@@ -29,20 +44,27 @@ class Documents extends Controller
      */
     public function terms(Request $request)
     {
+        $mongo = Mongo::connect('tot');
         $twitter = (new SocialBuilder())
             ->setType('twitter')
-            ->setId( 'WAstat6a0NZ8IjhCMckzIBBuz')
-            ->setSecret('0qnneaD57tRGXEiUqbrGdi5Qjsm63a20i9ZkTkffgXF3KJUlVK')
-            ->get();
-
-        $twitter->connect();
+            ->connect();
 
         $tweets = $twitter->getTweets([
             'call' => 'statuses/user_timeline',
             'screen_name' => 'BrentToderian'
         ]);
-//        dump($twitter->get('tweets/search', []));
-        dump($tweets);
+
+        foreach ($tweets as $tweet){
+            if(!$mongo->find('posts', ['id' => $tweet->id])){
+                Mongo::connect('tot')->insert('posts', $tweet );
+            }else{
+                dump( 'Tweet with id #' . $tweet->id . ' already exists' . PHP_EOL);
+            }
+
+            //Mongo::connect('tot')->set('posts', $tweet );
+        }
+
+        dd($tweets);
 
 
         $bicycle = (new BicycleBuilder())

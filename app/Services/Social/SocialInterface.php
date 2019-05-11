@@ -11,5 +11,5 @@ namespace App\Services\Social;
 
 interface SocialInterface
 {
-    public function connect() : void;
+    public function connect();
 }

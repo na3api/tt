@@ -16,7 +16,7 @@ class Facebook extends Social
         parent::__construct($builder);
     }
 
-    public function connect(): void
+    public function connect(): Facebook
     {
         // TODO: Implement connect() method.
     }

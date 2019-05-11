@@ -16,6 +16,7 @@ ADD docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN apk update && apk upgrade
 
+ENV MONGO_PHP_DRIVER_VERSION=1.1.10
 # Install packages
 RUN apk --no-cache add \
     curl \
@@ -34,6 +35,8 @@ RUN apk --no-cache add \
     php7-xmlreader \
     php7-simplexml \
     php7-zlib \
+    php7-mongodb \
+    mongodb \
     supervisor \
     xvfb \
     ttf-freefont \

@@ -25,7 +25,7 @@ class Twitter extends Social
         parent::__construct($builder);
     }
 
-    public function connect() : void {
+    public function connect() : Twitter {
         /**
          * Instantiate ApplicationOnly
          *
@@ -34,15 +34,14 @@ class Twitter extends Social
          */
         try{
             $this->auth = new ApplicationOnlyAuth([
-                'consumer_key' => $this->appId,
-                'consumer_secret' => $this->secretKey
+                'consumer_key' => $this->appId ?? getenv('TWITTER_ID'),
+                'consumer_secret' => $this->secretKey ?? getenv('TWITTER_SECRET')
             ], new ArraySerializer());
+
+            return $this;
         }catch (MissingCredentialsException $exception){
             throw new \Error($exception);
         }
-
-
-
     }
 
     private function get(string $call, array $params){
