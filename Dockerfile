@@ -3,14 +3,6 @@ FROM alpine:3.8
 RUN addgroup -g 1000 -S www-data \
  && adduser -u 1000 -D -S -G www-data www-data
 
-ADD docker/php7-fpm/zz-www.conf /usr/local/etc/php-fpm.d/
-ADD docker/php7-fpm/www.conf /usr/local/etc/php-fpm.d/
-ADD docker/php7-fpm/php.ini /usr/local/etc/php/conf.d
-
-ADD docker/nginx/local/nginx.conf /etc/nginx/
-ADD docker/nginx/local/auto-de.conf /etc/nginx/conf.d/
-ADD docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
 # on alpine static compiled patched qt headless wkhtmltopdf (47.2 MB)
 # compilation takes 4 hours on EC2 m1.large in 2016 thats why binary
 
@@ -35,6 +27,7 @@ RUN apk --no-cache add \
     php7-xmlreader \
     php7-simplexml \
     php7-zlib \
+    php7-gd \
     php7-mongodb \
     mongodb \
     supervisor \
@@ -44,6 +37,14 @@ RUN apk --no-cache add \
     dbus \
     openssl \
     git
+
+ADD docker/nginx/local/nginx.conf /etc/nginx/
+ADD docker/nginx/local/auto-de.conf /etc/nginx/conf.d/
+ADD docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+ADD docker/php7-fpm/zz-www.conf /etc/php7/php-fpm.d/
+ADD docker/php7-fpm/www.conf /etc/php7/php-fpm.d/
+ADD docker/php7-fpm/php.ini /etc/php7/conf.d/
 
 WORKDIR /var/www/project
 

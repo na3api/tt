@@ -1,33 +1,36 @@
 {
-  "name": "tt",
-  "version": "1.0.0",
-  "description": "Install docker - https://docs.docker.com/install/   Install docker-compose - https://docs.docker.com/compose/install/   Create `.env` based on `.env.dist`",
-  "main": "index.js",
+  "name": "reacted",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@babel/core": "^7.4.3",
-    "browserify": "^16.2.3",
-    "core-js": "^3.0.1",
-    "reading-time": "^1.2.0",
-    "watchify": "^3.11.1",
-    "wkhtmltopdf": "^0.3.4"
+    "@types/jest": "24.0.13",
+    "@types/node": "12.0.1",
+    "@types/react": "16.8.17",
+    "@types/react-dom": "16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "typescript": "3.4.5"
   },
   "scripts": {
-    "build": "babel public/assets/js -d public/build --present es2016",
-    "watch": "babel public/assets/js -d public/build --present es2016 -w"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.1",
-    "babel-preset-es2016": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "babelify": "^10.0.0",
-    "browserify": "^16.2.3",
-    "eslint": "^5.16.0",
-    "eslint-cli": "^1.1.1",
-    "eslint-config-airbnb-base-hf": "^1.10.2"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "author": "",
-  "license": "ISC"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

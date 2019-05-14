@@ -231,3 +231,29 @@ function clearString($string){
 function shutDownFunction(){
 
 }
+
+function my_assert_handler($file, $line, $code = null, $desc = null)
+{
+    echo "Error asserting in $file:$line: $code";
+    if ($desc) {
+        echo ": $desc";
+    }
+    echo "\n";
+
+    die();
+}
+
+function callback($buffer)
+{
+    // заменить все яблоки апельсинами
+    return (str_replace("яблоки", "апельсины", $buffer));
+}
+
+function factorial($f){
+    if($f > 1){
+        return factorial($f - 1) * $f;
+    }
+
+    return 1;
+
+}

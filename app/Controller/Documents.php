@@ -29,12 +29,33 @@ class Documents extends Controller
      */
     public function get(Request $request)
     {
-        $test = Mongo::connect('tot')->find('posts');
+        header('Content-Type: application/json');
 
-        dd($test);
+        $posts = Mongo::connect('tot')->find('posts');
+
+        echo json_encode($posts);
     }
 
-    public function setTweets(Request $request){
+    public function php(){
+        define('ARRAYS', ['Zero','First' => 'First1', 'Seccond']);
+
+        $info = array('кофе', 'коричневый', 'кофеин');
+
+        list('First' => $first) = ARRAYS;
+
+        dump($first);
+        assert(is_numeric((2 || 1)), new AppException('True is not false!'));
+
+        assert(false == true, 'false != true');
+        echo 'Привет!';
+    }
+    public function php1(Request $request){
+        dump(factorial($request->query['f']));
+        $test = '3';
+        $a = 'test';
+        $b = $$a;
+        //$b = "2$b";
+        echo $a.", ".$b;
 
     }
     /**

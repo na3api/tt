@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/babel" src="/build/twitter.js"></script>
+    <script type="text/babel" src="/build/error.js"></script>
+    <script type="text/babel" src="/build/addition.js"></script>
+    <script type="text/babel" src="/build/tasks.js"></script>
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .incorrect{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="app"></div>
+    </div>
+    <script type="text/babel">
+        class Tweet extends React.Component {
+            render(){
+                return <p>{this.props.text}</p>
+            }
+        }
+
+        class Navbar extends React.Component {
+            render (){
+                var pages = [];
+
+                for(let index in this.props.pages){
+                    pages.push(
+                        <li className={"nav-item " + (this.props.currectPage === index ? 'active' : '')} key={index}>
+                            <a onClick={this.props.changeCurrentPage} className="nav-link" href={'#' + index} data-index={index}>{this.props.pages[index].name}</a>
+                        </li>
+                    );
+                }
+
+                return (
+                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                        <a className="navbar-brand" href="#">Navbar</a>
+                            <button className="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="navbar-nav mr-auto">
+                                {pages}
+                            </ul>
+                            <form className="form-inline my-2 my-lg-0">
+                                <input className="form-control mr-sm-2" type="search" placeholder="Search"
+                                       aria-label="Search"/>
+                                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search
+                                    </button>
+                            </form>
+                        </div>
+                    </nav>
+                );
+            }
+        }
+
+        class Page extends React.Component{
+            render(){
+                if(this.props.page.id === 'twitter'){
+                    return (
+                        <div>
+                            <ErrorBoundary>
+                                <Twitter />
+                            </ErrorBoundary>
+                        </div>
+                    )
+                }else{
+                    return (
+                        <div>
+                            <h1>{this.props.page.name}</h1>
+                        </div>
+                    );
+                }
+            }
+
+        }
+        //ReactDOM.render(<Addition />, document.querySelector('#app'))
+        class App extends React.Component {
+            constructor(props){
+                super(props);
+
+                this.pages = [{
+                    id: 'home',
+                    name: 'Home Page'
+                },{
+                    id: 'twitter',
+                    name: 'Twitter Page',
+                }];
+
+                this.state = {
+                    currentPage: 0
+                };
+            }
+
+            render(){
+                return (
+                    <div>
+                        <Navbar
+                            pages={this.pages}
+                            currectPage={this.state.currentPage}
+                            changeCurrentPage={this.changeCurrentPage}
+                        />
+                        <Page page={this.pages[this.state.currentPage]}
+                              currectPage={this.state.currentPage}
+                        />
+                    </div>
+                );
+            }
+
+            changeCurrentPage = (event) => {
+                this.setState({
+                    currentPage: event.target.dataset.index
+                });
+            }
+        }
+        ReactDOM.render(<App />, document.querySelector('#app'))
+    </script>
+</body>
+</html>
