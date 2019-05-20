@@ -20,6 +20,12 @@ use JsonApiPhp\JsonApi\JsonApi;
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+define('ARR', [
+    'name' => 'Nazar',
+    'age' => '28',
+    'position' => 'WEB developer'
+]);
+
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../app/helpers.php';
 

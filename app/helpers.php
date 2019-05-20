@@ -257,3 +257,93 @@ function factorial($f){
     return 1;
 
 }
+
+class Base {
+    public function sayHello() {
+        echo 'Hello ';
+    }
+}
+
+trait SayWorld {
+    public function sayHello() {
+        parent::sayHello();
+        echo 'City!';
+    }
+}
+
+trait SayName {
+    public function sayHello() {
+        parent::sayHello();
+        echo 'World!';
+    }
+}
+
+trait SayAge {
+    protected $state = 1;
+    protected $message = '';
+
+    public function sayHello() {
+        parent::sayHello();
+
+        echo PHP_EOL . '28!' . PHP_EOL;
+    }
+
+    public function __construct($message = null)
+    {
+        $this->state = 4;
+        $this->message = $message;
+    }
+}
+
+/**
+ * Class Profile
+*/
+class MyHelloWorld extends Base {
+    const words = ['Hi', 'bye'];
+
+    use SayWorld, SayName, SayAge{
+            SayName::sayHello insteadof SayWorld, SayAge;
+        }
+    /**
+     * MyHelloWorld constructor.
+     * @param $message
+     */
+
+    public function __destruct()
+    {
+        echo $this->message . "\r\n" ;
+    }
+
+    /**
+     * @param $name
+     */
+    public function __unset($name)
+    {
+        echo PHP_EOL . $name . PHP_EOL;
+    }
+}
+
+$object = new stdClass;
+$object->test = true;
+
+$arr = [
+    'test' => true
+];
+
+function set(&$object){
+    $object->test = false;
+}
+
+function aset(&$arr){
+    $arr['test'] = false;
+}
+set($object);
+aset($arr);
+
+dump($object, $arr);
+
+$arr = [
+    function(){
+
+    }
+];

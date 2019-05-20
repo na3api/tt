@@ -29,6 +29,8 @@ RUN apk --no-cache add \
     php7-zlib \
     php7-gd \
     php7-mongodb \
+    php7-xdebug \
+    php7-dev \
     mongodb \
     supervisor \
     xvfb \

@@ -50,13 +50,6 @@ class Documents extends Controller
         echo 'Привет!';
     }
     public function php1(Request $request){
-        dump(factorial($request->query['f']));
-        $test = '3';
-        $a = 'test';
-        $b = $$a;
-        //$b = "2$b";
-        echo $a.", ".$b;
-
     }
     /**
      * @param $query
